@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href=" {%static 'css/style.css'%} ">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h2 class="log" id="test"><a href="{%url 'home' %}">BL00M</a></h2>
+            <div class="search_bar">
+                <i class='bx bx-search'></i>
+                <input type="search" placeholder="search">
+            </div>
+            <div class="create">
+                  {%if user.is_authenticated%}
+                <label  class="btn btn-pr testing" for="creat-post"> <a href="{%url 'add_post'%}">Create Post</a></label>
+                {%else%}
+                <label  class="btn btn-pr testing" for="creat-post"> <a href="{% url 'register' %}">Sin up</a></label>
+                {%endif%}
+                <div class="profile-pic navTog">
+  
+                        <img src="{%static 'images/user.svg'%}" alt="">
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-------------main----------->
+    <main>
+        <div class="container">
+            <div class="left">
+                <a class="profile">
+                    <div class="profile-pic">
+
+                        <img src="{%static 'images/user.svg'%}" alt="">
+      
+                    </div>
+                    <div class="handle">
+                        <h4>toumi reda</h4>
+                        <p class="text-muted">
+                            @ADEL
+                        </p>
+                    </div>
+                </a>
+                    <!-------------sidebar left----------->
+                <div class="sidebar">
+                    <a  class="menu-item active">
+                        <span><i class='bx bx-home-alt'></i></span><h3>home</h3>
+                    </a>
+                    {%if user.profile.id %}
+                    <a   class="menu-item">
+                        <span><i class='bx bx-ghost' ></i></span><h3>edit profile</h3>
+                    </a>
+                    {%else%}
+                    <a  href="{% url 'CreatProfilePage' %}"  class="menu-item">
+                        <span><i class='bx bx-ghost' ></i></span><h3>creat profile</h3>
+                    </a>
+                    {%endif%}
+                    <a  class="menu-item"  id="notif">
+                        <span><i class='bx bx-bell' ><small class="notification-count" >9+</small></i></span><h3>notifications</h3>
+                        <div class="notifications-popup">
+
+                            <div>
+                                <div class="profile-pic">
+                                    <img src="{%static 'images/userF.svg'%}" alt="">
+                                </div>
+                                <div class="notifications-body">
+                                    <b>toumi reda</b>accepted you req
+                                    <small class="text-muted">2 days ago</small>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="profile-pic">
+                                    <img src="{%static 'images/userG.svg'%}" alt="">
+                                </div>
+                                <div class="notifications-body">
+                                    <b>toumi reda</b>accepted you req
+                                    <small class="text-muted">2 days ago</small>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="profile-pic">
+                                    <img src="{%static 'images/userF2.svg'%}" alt="">
+                                </div>
+                                <div class="notifications-body">
+                                    <b>toumi reda</b>accepted you req
+                                    <small class="text-muted">2 days ago</small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </a>
+                    <a  class="menu-item" id="messages">
+                        <span><i class='bx bx-message-square'><small class="notification-count" >5+</small></i></span><h3>messages</h3>
+                    </a>
+                    <a href="{% url 'login' %}" class="menu-item">  
+                        <span><i class='bx bx-bar-chart-alt' ></i></span><h3>analytics</h3>
+                    </a>
+                    <a  class="menu-item">  
+                        <span><i class='bx bx-bookmark' ></i></span><h3>bookmarks</h3>
+                    </a>
+                    <a  class="menu-item">  
+                        <span><i class='bx bx-palette' ></i></span><h3>theme</h3>
+                    </a>
+                    <a   class="menu-item">  
+                        <span><i class='bx bx-code' ></i></span><h3>settings</h3>
+                    </a>
+                    <a href="{% url 'logout' %}"  class="menu-item">  
+                        <span><i class='bx bx-log-out' ></i></span><h3>logout</h3>
+                    </a>
+                </div>
+                <label for="creat-post" class="btn btn-pr">Create Post</label>
+            </div>
+
+            <div class="middle">
+                {% block content %}
+
+                {% endblock %}                
+            </div>
+
+            <div class="right">
+                <div class="messages">
+                    <div class="heading">
+                        <h4>Messages</h4>
+                        <i class='bx bx-message-square-dots' ></i>
+                    </div>
+                    <!--search bar-->
+                    <div class="search_bar">
+                        <i class='bx bx-search'></i>
+                        <input type="search" placeholder="search msg" id="message-search">
+                    </div>
+                    <!--messg catg-->
+                    <div class="category">
+                        <h6 class="active">Primary</h6>
+                        <h6>General</h6>
+                        <h6 class="message-requests">
+                            Requests(7)
+                        </h6>
+                    </div>
+                    <!--messg -->
+                    <div class="message">
+                        <div class="profile-pic">
+                            <img src="{%static 'images/userG.svg'%}" alt="">
+                            <div class="active"></div>
+                        </div>
+                        <div class="message-body">
+                            <h5>reda adel</h5>
+                            <p class="text-muted">just working</p>
+                        </div>
+                    </div>
+                    <div class="message">
+                        <div class="profile-pic">
+                            <img src="{%static 'images/user.svg'%}" alt="">
+                        </div>
+                        <div class="message-body">
+                            <h5>allaa </h5>
+                            <p class="text-bold">just chilling</p>
+                        </div>
+                    </div>
+                    <div class="message">
+                        <div class="profile-pic">
+                            <img src="{%static 'images/userG.svg'%}" alt="">
+                            <div class="active"></div>
+                        </div>
+                        <div class="message-body">
+                            <h5>beta team</h5>
+                            <p class="text-muted">hi.....</p>
+                        </div>
+                    </div>
+                </div>
+                  <!--friends req-->
+                <div class="friend-requests">
+                    <h4>Requests</h4>
+
+                    <div class="request">
+                        <div class="info">
+                            <div class="profile-pic">
+                                <img src="{%static 'images/user.svg'%}" alt="">
+                            </div>
+                            <div>
+                                <h5>reda adel</h5>
+                                <p class="text-muted">
+                                    8 mutual friends
+                                </p>
+                            </div>
+                        </div>
+                        <div class="action">
+                            <button class="btn btn-pr">
+                                Accept
+                            </button>
+                            <button class="btn">
+                                Decline
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="request">
+                        <div class="info">
+                            <div class="profile-pic">
+                                <img src="{%static 'images/userG.svg'%}" alt="">
+                            </div>
+                            <div>
+                                <h5>reda adel</h5>
+                                <p class="text-muted">
+                                    8 mutual friends
+                                </p>
+                            </div>
+                        </div>
+                        <div class="action">
+                            <button class="btn btn-pr">
+                                Accept
+                            </button>
+                            <button class="btn">
+                                Decline
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script src=" {%static 'js/app.js'%} "></script> 
+</body>
+</html>

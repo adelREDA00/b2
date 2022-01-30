@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+{%if user.is_authenticated%}
+<div class="customize_theme">
+    <div class="card">
+        <form class="formPost" action="" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                {%csrf_token%}
+                {{form.media}}
+    
+                {{form.title}}
+                <div class="post_pics">
+                    <p>upload photo</p>
+                    {{form.pic}}
+                </div>
+                {{form.body}}
+    
+                {{form.title_tag}}
+                {{form.author}}
+                {{form.errors}}
+            </div>
+            <div class="action">
+            <a href=" {%url 'home' %} " class="btn btnback ">back</a> 
+            <button class="btn" >POST</button>
+            </div>
+        </form>
+    
+    </div>
+</div>
+
+    <script>
+        //we can change this fnc to work on the backend to avoid 
+        const user = ` {{user.id}} `
+        const userPlaceHolder= document.querySelector(".userId")
+        const tagPlaceHolder= document.querySelector(".tag")
+        userPlaceHolder.value= user
+        tagPlaceHolder.value= 'ghost'
+    </script>
+{%else%}
+make sure you are loged in to add posts
+{%endif%}
+
+{% endblock %}

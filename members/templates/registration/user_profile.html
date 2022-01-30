@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>profile</h1>
+
+
+
+
+
+    <img src="{%static 'img/unnamed.jpg'%}" alt="">
+
+
+<br>
+
+{{page_user.user.username}}
+<br>
+{{page_user.bio}}
+
+
+
+
+{% endblock %}

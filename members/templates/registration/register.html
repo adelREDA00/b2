@@ -1,0 +1,41 @@
+{% extends 'registration/base2.html' %}
+{% block content %}
+<form action="#" method="POST" class="sign-in-form">
+                {%csrf_token%}
+            <h2 class="title">Creat account</h2>
+
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              {{form.username}}
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              {{form.password1}}
+            </div>
+            <div class="input-field">
+                <i class="fas fa-lock"></i>
+                {{form.password2}}
+              </div>
+
+
+                <input type="submit" value="Creat" class="btn solid" />
+
+            {{form.errors}}
+            <p class="social-text">Or <a  href="{% url 'login' %}">Log in</a> if you have account</p>
+            <div class="social-media">
+              <a href="{% url 'login' %}" class="social-icon">
+                <i class="fas fa-sign-in-alt"></i>
+              </a>
+            </div>
+</form>
+
+<script>
+  const input = document.getElementsByTagName("input")
+  input[1].placeholder = 'username'
+  input[2].placeholder = 'password'
+  input[3].placeholder = 'confirm password'
+</script>
+ {% endblock %}
+
+
+

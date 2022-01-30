@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+{%if user.is_authenticated%}
+{%if user.id == post.author.id%}
+<div class="customize_theme">
+    <div class="card">
+    <form class="formPost" action="" method="POST">
+        <div class="mb-3">
+            {%csrf_token%}
+            {{form.media}}
+
+            {{form.title}}
+            <div class="post_pics">
+                <p>u cant change the photo for now</p>
+            </div>
+            {{form.body}}
+
+            
+            {{form.title_tag}}
+            {{form.author}}
+            {{form.errors}}
+            <div class="action">
+                <button class="btn" >POST</button>
+                <small class="btn btnDel"> <a href="{%url 'delete_post' post.pk%}">Delet</a></small>
+                <a href=" {%url 'home' %} " class="btn btnback">back</a> 
+            </div>
+        </div>
+    </form>
+    {%else%}
+    you`r not allowd to edit this posts
+    {%endif%}
+
+{%else%}
+make sure you are loged in to edit posts
+{%endif%}
+    </div>
+
+</div>
+
+<script>
+    const tagPlaceHolder= document.querySelector(".tag")
+    tagPlaceHolder.value= 'ghost'
+</script>
+{% endblock %}

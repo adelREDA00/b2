@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+                    <!--stories-->
+<div class="stories">
+
+    <div class="story">
+
+    <div class="profile-pic">
+        <img src="{%static 'images/user.svg'%}" alt="">
+    </div>
+    <p class="name">toumi reda</p>
+    </div>
+
+    <div class="story">
+    <div class="profile-pic">
+    <img src="{%static 'images/userF.svg'%}" alt="">
+    </div>
+    <p class="name">toumi reda</p>
+    </div>
+
+    <div class="story">
+    <div class="profile-pic">
+     <img src="{%static 'images/user.svg'%}" alt="">
+    </div>
+    <p class="name">toumi reda</p>
+     </div>
+                        
+    <div class="story">
+    <div class="profile-pic">
+     <img src="{%static 'images/user.svg'%}" alt="">
+    </div>
+    <p class="name">toumi reda</p>
+
+    </div>
+                                    
+                        
+</div>
+        <!--end stories-->
+        <!--create post & feeds-->  
+        <!--create post-->
+<form action="" class="create-post">
+    <div class="profile-pic">
+        <img src="{%static 'images/userG.svg'%}" alt="">
+    </div>
+    <input type="text" placeholder="here you can post anonymous" id="create-post">
+    <input type="submit" value="Post" class="btn btn-pr">
+</form>
+<!--FEEDS-->
+
+    <!--FEEDS-->
+{% for post in object_list %}
+<div class="feeds">
+        <div class="feed">
+            <div class="head">
+                <div class="user">
+                    <div class="profile-pic">
+                        <img src="{%static 'images/user.svg'%}" alt="">
+             
+                    </div>
+                    <div class="info">
+                        <h3>{{post.author.username}}</h3>
+                        <small>{{post.post_date}}</small>
+                    </div>
+                </div>
+                <span class="edit">
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </span>
+            </div>
+
+            <div class="post_title">
+               <h1> <a class="title_link" href="{%url 'article-detail' post.pk%}">{{post.title|safe}}</a></h1>
+            </div>
+
+
+            <div class="action-button">
+                <div class="interaction-buttons">
+                    <span><i class='bx bx-heart'></i></span>
+                    <span><i class='bx bx-message-square-dots' ></i></span>
+                    <span><i class='bx bx-share-alt' ></i></span>
+                </div>
+                <div class="bookmark">
+                    <span><i class='bx bx-bookmark' ></i></span>
+                </div>
+            </div>
+            <div class="liked-by">
+                <span><img src="{%static 'images/user.svg'%}" alt=""></span>
+                <span><img src="{%static 'images/user.svg'%}" alt=""></span>
+                <span><img src="{%static 'images/user.svg'%}" alt=""></span>
+                <p>liked by <b>adel</b> and <b>reda</b> and <b>235 others</b></p>
+            </div>
+            <div class="caption">
+                <p>{{post.body|slice:"50"|safe}} <span class="hash-tag">#</span></p>
+            </div>
+            <div class="comments text-muted">
+                View all 277 comments
+                {%if user.is_authenticated%}
+                {%if user.id == post.author.id%}
+                <small> <a href="{%url 'update_post' post.pk%}">Edit</a></small>
+                {%endif%}
+                {%endif%}
+                <small> <a href="{%url 'article-detail' post.pk%}">read more</a></small>
+            </div>
+        </div>
+</div>
+{%endfor%}
+
+
+{% endblock %}
+
+
+
+
+
+
+
+<!--
+{% for post in object_list %}
+<h1> <a href=" {%url 'article-detail' post.pk%} ">{{post.title}}</a></h1> <br>
+<h3> {{post.author.username}}/
+     <a href=" {%url 'category' post.category|slugify%} ">{{post.category}}</a> /
+    / {{post.post_date}}
+ </h3>
+ {%if user.is_authenticated%}
+ {%if user.id == post.author.id%}
+ <small> <a href="{%url 'update_post' post.pk%}">Edit</a></small>
+ <small> <a href="{%url 'delete_post' post.pk%}">Delet</a></small>
+ {%endif%}
+ {%endif%}
+<p>
+     {{post.body|slice:"200"}}
+</p>
+{%endfor%}
+
+ <img src="{%static 'img/unnamed.jpg'%}" alt="">
+-->

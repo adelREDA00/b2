@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{post.title_tag}}
+{% endblock %}
+{% block content %}
+
+
+<div class="feeds">
+    <div class="feed">
+        <div class="head">
+            <div class="user">
+                <div class="profile-pic">
+
+                    <img src="{%static 'images/wp3009787.jpg'%}" alt="">
+
+                </div>
+                <div class="info">
+                    <h3>{{post.author.username}}</h3>
+                    <small>{{post.post_date}}</small>
+                </div>
+            </div>
+            <span class="edit">
+                <i class='bx bx-dots-horizontal-rounded'></i>
+            </span>
+        </div>
+        <br> <span class="hash-tag">#</span> 
+        <h1>{{post.title}}  </h1>
+        <br>
+        <div class="post_body">
+            <p>{{post.body|safe}} </p>
+
+        </div>
+
+        <br>
+        <div class="action-button">
+            <div class="interaction-buttons">
+                {%if user.is_authenticated%}
+                <form class="likes_form" id=" {{post.id}} " action=" {% url 'like_post' post.pk %} " method="POST">
+                {%csrf_token%}
+                    <button class="btn btn-pr like_btn{{post.id}} " type="submit" name="post_id" value="{{post.id}} ">
+                    {%if liked%}
+                    unlike
+                    {%else%}
+                    like
+                    {%endif%}
+                    </button> 
+                </form>
+
+                {%endif%}
+            </div>
+            <div class="bookmark">
+                <span><i class='bx bx-bookmark' ></i></span>
+            </div>
+        </div>
+
+        <div class="action-button upvote" >
+            <p><span><i class='bx bx-heart'></i></span> liked by <b class=" like_count{{post.id}}">{{total_likes}}</b>people</p>
+        </div>
+
+        <div class="caption">
+            wriiten by : 
+            {%if post.author.profile.id %}
+            <a href="{%url 'show_profile_viwe' post.author.profile.id%}">  {{post.author.username}} </a>
+            {%else%}
+            <h5> {{post.author.username}}</h5>
+            {%endif%}
+        </div>
+        <div class="comments text-muted">
+            View all 277 comments
+            {%if user.is_authenticated%}
+            {%if user.id == post.author.id%}
+            <small> <a href="{%url 'update_post' post.pk%}">Edit</a></small>
+            <small> <a href="{%url 'delete_post' post.pk%}">Delet</a></small>
+            {%endif%}
+            {%endif%}
+        </div>
+    </div>
+</div>
+
+
+<!--JAVASCRIPT-->
+<script>
+    const likes_form = document.querySelector('.likes_form')
+
+    likes_form.addEventListener("click" , ()=>{
+        event.preventDefault()
+        const post_id  = likes_form.getAttribute('id')
+        const like_btn =  document.querySelector('.like_btn{{post.id}}').innerText.trim()
+
+        const post_url  = likes_form.getAttribute('action')
+
+        let likes_count = document.querySelector(`.like_count{{post.id}}`).innerText
+        const likes_count_Int = parseInt(likes_count)
+        let res ;
+        $.ajax({
+            type : 'POST',
+            url : post_url,
+            data : {
+                'csrfmiddlewaretoken' :$('input[name=csrfmiddlewaretoken]').val(),
+                'post_id' : post_id
+            },
+            success : function (response){
+                if( like_btn === 'unlike'){
+                    const like_btn = document.querySelector(`.like_btn${post_id.trim()}`)
+                    like_btn.innerText = 'like' 
+                    res = likes_count_Int - 1
+                }
+                else{
+                    const like_btn = document.querySelector(`.like_btn${post_id.trim()}`)
+                    like_btn.innerText = 'unlike'
+                    res = likes_count_Int + 1 
+                }
+                 let likes_count = document.querySelector(`.like_count${post_id.trim()}`)
+                 likes_count.innerText = res
+            },
+            error : function (response){
+                console.log("fail");
+            }
+        })
+        
+        })
+       
+
+</script>
+
+{% endblock %}

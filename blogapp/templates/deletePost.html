@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="customize_theme">
+    <div class="card">
+        {%if user.is_authenticated%}
+        {%if user.id == post.author.id%}
+        
+            <form class="formPost"  action="" method="POST">
+                <h1>  confirm  ... </h1>
+                <br>
+                <h3>Delete : {{post.title}} </h3>
+                <br>
+                <div class="mb-3">
+                    {%csrf_token%}
+                    <div class="action">
+                        <button class="btn btnDel" > Delete</button>
+                        <small> <a class="btn btnback" href=" {%url 'home' %} ">back</a></small>
+                        <small> <a class="btn" href="{%url 'update_post' post.pk%}">Edit</a></small>
+                    </div>
+                </div>
+            </form>
+            {%else%}
+            you`r not allowd to delte this posts
+            {%endif%}
+        {%else%}
+        make sure you are loged in to delete posts
+        {%endif%}
+    </div>
+
+</div>
+
+{% endblock %}

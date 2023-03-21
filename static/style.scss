@@ -34,11 +34,58 @@ html{
     scroll-behavior: smooth;
 }
 
+
 body{
     font-family: "Poppins",sans-serif;
     color: $color-dark ;
     background-color: $color-light;
     overflow-x: hidden;
+}
+.port{
+  color: #fff;
+  text-decoration: none;
+
+}
+.edit{
+  a{
+    color: $color-dark;
+    font-weight: bold;
+  }
+}
+.del{
+  a{
+    color: $color-danger;
+    font-weight: bold;
+  }
+}
+.postimg{
+  border-radius:10px;
+  width: 70%;
+  margin: 0 auto;
+}
+.ptitle{
+  text-align: center;
+}
+.pdoc{
+  line-height: 1.5rem;
+  font-size: 1rem;
+}
+.cbtn{
+   background-color: #04befe;
+   font-size: .9rem;
+   padding:0.6rem 2rem;
+   border-radius: 2rem;
+   margin: 0 auto;
+}
+.po{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  color: #333;
+  text-decoration: none; /* no underline */
 }
 .container{
     width: 80%;
@@ -55,6 +102,10 @@ body{
       object-fit: cover;
     }
 }
+.navTog{
+  border: .5px solid #b6b6b6;
+}
+
 img{
     display: block;
     width: 100%;
@@ -283,7 +334,7 @@ main .container .left{
             width: 2rem;
             height: 2rem;
             align-self: start;
-            border: 3px solid $color-pr;
+            border: 2px solid rgb(219, 222, 255);
             overflow: hidden
         }
         &::before{
@@ -301,19 +352,19 @@ main .container .left{
             font-weight: bold;
         }
         &:nth-child(1){
-            background: url(/static/images/wp3009787.jpg)
+            background: url(/static/images/backk1.jpg)
             no-repeat center center/cover;
         }
         &:nth-child(2){
-            background: url(/static/images/userG.svg)
+            background: url(/static/images/about1.png)
             no-repeat center center/cover;
         }
         &:nth-child(3){
-            background: url(/static/images/userF.svg)
+            background: url(/static/images/about4.png)
             no-repeat center center/cover;
         }
         &:nth-child(4){
-            background: url(/static/images/user.svg)
+            background: url(/static/images/back2.png)
             no-repeat center center/cover;
         }
     }
@@ -499,7 +550,7 @@ main .container .right{
 }
 
 //media Q for small lap and tablets
-@media screen and(max-width:1200px){
+@media screen and (max-width:1200px){
 
     .container{
         width: 96%;
@@ -550,7 +601,7 @@ main .container .right{
 }
 
 //media Q for  mobile
-@media screen and(max-width:992px){
+@media screen and (max-width:992px){
     .search_bar{
         display: none;
     }

@@ -7,28 +7,28 @@
     <div class="story">
 
     <div class="profile-pic">
-        <img src="{%static 'images/user.svg'%}" alt="">
+        <img src="{%static 'images/about4.png'%}" alt="">
     </div>
     <p class="name">toumi reda</p>
     </div>
 
     <div class="story">
     <div class="profile-pic">
-    <img src="{%static 'images/userF.svg'%}" alt="">
+    <img src="{%static 'images/james.jpg'%}" alt="">
     </div>
     <p class="name">toumi reda</p>
     </div>
 
     <div class="story">
     <div class="profile-pic">
-     <img src="{%static 'images/user.svg'%}" alt="">
+     <img src="{%static 'images/about1.png'%}" alt="">
     </div>
     <p class="name">toumi reda</p>
      </div>
                         
     <div class="story">
     <div class="profile-pic">
-     <img src="{%static 'images/user.svg'%}" alt="">
+     <img src="{%static 'images/hotz.jpg'%}" alt="">
     </div>
     <p class="name">toumi reda</p>
 
@@ -55,7 +55,10 @@
             <div class="head">
                 <div class="user">
                     <div class="profile-pic">
+
                         <img src="{%static 'images/user.svg'%}" alt="">
+                       
+
              
                     </div>
                     <div class="info">
@@ -70,6 +73,10 @@
 
             <div class="post_title">
                <h1> <a class="title_link" href="{%url 'article-detail' post.pk%}">{{post.title|safe}}</a></h1>
+               <br>
+               {%if post.pic  %}
+            <img src="{{post.pic.url}} " alt="">
+            {%endif%}
             </div>
 
 
@@ -84,10 +91,10 @@
                 </div>
             </div>
             <div class="liked-by">
-                <span><img src="{%static 'images/user.svg'%}" alt=""></span>
-                <span><img src="{%static 'images/user.svg'%}" alt=""></span>
-                <span><img src="{%static 'images/user.svg'%}" alt=""></span>
-                <p>liked by <b>adel</b> and <b>reda</b> and <b>235 others</b></p>
+                <span><img src="{%static 'images/about1.png'%}" alt=""></span>
+                <span><img src="{%static 'images/james.jpg'%}" alt=""></span>
+                <span><img src="{%static 'images/hotz.jpg'%}" alt=""></span>
+                <p>liked by <b>Reda</b> and <b>Brandon</b> and <b>235 others</b></p>
             </div>
             <div class="caption">
                 <p>{{post.body|slice:"50"|safe}} <span class="hash-tag">#</span></p>
@@ -96,10 +103,10 @@
                 View all 277 comments
                 {%if user.is_authenticated%}
                 {%if user.id == post.author.id%}
-                <small> <a href="{%url 'update_post' post.pk%}">Edit</a></small>
+                <small class="edit"> <a href="{%url 'update_post' post.pk%}">Edit</a></small>
                 {%endif%}
                 {%endif%}
-                <small> <a href="{%url 'article-detail' post.pk%}">read more</a></small>
+                <small class="edit"> <a href="{%url 'article-detail' post.pk%}">read more</a></small>
             </div>
         </div>
 </div>

@@ -3,11 +3,12 @@
 {%if user.is_authenticated%}
   
     <br>
-    <form class="formPost" action="" method="POST" enctype="multipart/form-data">
-        <div class="mb-3">
+    <form class="formPost  " action="" method="POST" enctype="multipart/form-data">
+        <div class="mb-3 po">
             {%csrf_token%}
             {{form.as_p}}
-            <button class="btn" >creat profile</button>
+            <br>
+            <button class="cbtn" >Creat profile</button>
         </div>
     </form>
 

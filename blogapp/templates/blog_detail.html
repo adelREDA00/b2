@@ -12,24 +12,33 @@
             <div class="user">
                 <div class="profile-pic">
 
-                    <img src="{%static 'images/wp3009787.jpg'%}" alt="">
+                    <img src="{%static 'images/user.svg'%}" alt="">
+
+
 
                 </div>
                 <div class="info">
                     <h3>{{post.author.username}}</h3>
                     <small>{{post.post_date}}</small>
                 </div>
+                
             </div>
             <span class="edit">
                 <i class='bx bx-dots-horizontal-rounded'></i>
             </span>
         </div>
-        <br> <span class="hash-tag">#</span> 
-        <h1>{{post.title}}  </h1>
+        <br> <span class="hash-tag">#Bloom</span> 
+        <h1 class="ptitle" >{{post.title}}  </h1>
+        <br>
+
+        {%if post.pic  %}
+        <img class="postimg" src="{{post.pic.url}} " alt="">
+        {%endif%}
+         
+       
         <br>
         <div class="post_body">
-            <p>{{post.body|safe}} </p>
-
+            <p class="pdoc">{{post.body|safe}} </p>
         </div>
 
         <br>
@@ -70,8 +79,8 @@
             View all 277 comments
             {%if user.is_authenticated%}
             {%if user.id == post.author.id%}
-            <small> <a href="{%url 'update_post' post.pk%}">Edit</a></small>
-            <small> <a href="{%url 'delete_post' post.pk%}">Delet</a></small>
+            <small class="edit"> <a href="{%url 'update_post' post.pk%}">Edit</a></small>
+            <small class="del"> <a href="{%url 'delete_post' post.pk%}">Delete</a></small>
             {%endif%}
             {%endif%}
         </div>

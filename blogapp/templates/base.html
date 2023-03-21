@@ -44,16 +44,26 @@
                         <img src="{%static 'images/user.svg'%}" alt="">
       
                     </div>
+                    {%if user.is_authenticated%}
                     <div class="handle">
-                        <h4>toumi reda</h4>
+                        <h4>{{user.username}}</h4>
                         <p class="text-muted">
-                            @ADEL
+                           @ {{user.username}}
                         </p>
                     </div>
+                    {%else%}
+                    <div class="handle">
+                        <h4>Usre Beta</h4>
+                        <p class="text-muted">
+                            @User
+                        </p>
+                    </div>
+
+                    {%endif%}
                 </a>
                     <!-------------sidebar left----------->
                 <div class="sidebar">
-                    <a  class="menu-item active">
+                    <a href="{% url 'home' %}"  class="menu-item active">
                         <span><i class='bx bx-home-alt'></i></span><h3>home</h3>
                     </a>
                     {%if user.profile.id %}
@@ -71,31 +81,31 @@
 
                             <div>
                                 <div class="profile-pic">
-                                    <img src="{%static 'images/userF.svg'%}" alt="">
+                                    <img src="{%static 'images/back0.jpg'%}" alt="">
                                 </div>
                                 <div class="notifications-body">
-                                    <b>toumi reda</b>accepted you req
+                                    <b>Brendan Eich</b> accepted you req
                                     <small class="text-muted">2 days ago</small>
                                 </div>
                             </div>
 
                             <div>
                                 <div class="profile-pic">
-                                    <img src="{%static 'images/userG.svg'%}" alt="">
+                                    <img src="{%static 'images/about4.png'%}" alt="">
                                 </div>
                                 <div class="notifications-body">
-                                    <b>toumi reda</b>accepted you req
+                                    <b>Toumi reda</b> accepted you req
                                     <small class="text-muted">2 days ago</small>
                                 </div>
                             </div>
 
                             <div>
                                 <div class="profile-pic">
-                                    <img src="{%static 'images/userF2.svg'%}" alt="">
+                                    <img src="{%static 'images/james.jpg'%}" alt="">
                                 </div>
                                 <div class="notifications-body">
-                                    <b>toumi reda</b>accepted you req
-                                    <small class="text-muted">2 days ago</small>
+                                    <b>James fr</b > accepted you req
+                                    <small class="text-muted">6 days ago</small>
                                 </div>
                             </div>
 
@@ -104,7 +114,7 @@
                     <a  class="menu-item" id="messages">
                         <span><i class='bx bx-message-square'><small class="notification-count" >5+</small></i></span><h3>messages</h3>
                     </a>
-                    <a href="{% url 'login' %}" class="menu-item">  
+                    <a  class="menu-item">  
                         <span><i class='bx bx-bar-chart-alt' ></i></span><h3>analytics</h3>
                     </a>
                     <a  class="menu-item">  
@@ -120,7 +130,7 @@
                         <span><i class='bx bx-log-out' ></i></span><h3>logout</h3>
                     </a>
                 </div>
-                <label for="creat-post" class="btn btn-pr">Create Post</label>
+                <label for="creat-post" class="btn btn-pr"> <a class="port" href="https://redaa.netlify.app/" target="_blank">Portfolio</a></label>
             </div>
 
             <div class="middle">
@@ -151,30 +161,30 @@
                     <!--messg -->
                     <div class="message">
                         <div class="profile-pic">
-                            <img src="{%static 'images/userG.svg'%}" alt="">
+                            <img src="{%static 'images/about4.png'%}" alt="">
                             <div class="active"></div>
                         </div>
                         <div class="message-body">
-                            <h5>reda adel</h5>
+                            <h5>Toumi Reda </h5>
                             <p class="text-muted">just working</p>
                         </div>
                     </div>
                     <div class="message">
                         <div class="profile-pic">
-                            <img src="{%static 'images/user.svg'%}" alt="">
+                            <img src="{%static 'images/james.jpg'%}" alt="">
                         </div>
                         <div class="message-body">
-                            <h5>allaa </h5>
+                            <h5>James fr </h5>
                             <p class="text-bold">just chilling</p>
                         </div>
                     </div>
                     <div class="message">
                         <div class="profile-pic">
-                            <img src="{%static 'images/userG.svg'%}" alt="">
+                            <img src="{%static 'images/hotz.jpg'%}" alt="">
                             <div class="active"></div>
                         </div>
                         <div class="message-body">
-                            <h5>beta team</h5>
+                            <h5>Hotz gorge</h5>
                             <p class="text-muted">hi.....</p>
                         </div>
                     </div>
@@ -186,10 +196,10 @@
                     <div class="request">
                         <div class="info">
                             <div class="profile-pic">
-                                <img src="{%static 'images/user.svg'%}" alt="">
+                                <img src="{%static 'images/back3.jpg'%}" alt="">
                             </div>
                             <div>
-                                <h5>reda adel</h5>
+                                <h5>Aymen tm </h5>
                                 <p class="text-muted">
                                     8 mutual friends
                                 </p>
@@ -208,10 +218,10 @@
                     <div class="request">
                         <div class="info">
                             <div class="profile-pic">
-                                <img src="{%static 'images/userG.svg'%}" alt="">
+                                <img src="{%static 'images/back0.jpg'%}" alt="">
                             </div>
                             <div>
-                                <h5>reda adel</h5>
+                                <h5>Brendan Eich</h5>
                                 <p class="text-muted">
                                     8 mutual friends
                                 </p>
